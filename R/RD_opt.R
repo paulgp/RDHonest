@@ -111,7 +111,7 @@ RDEstimator <- function(d, f, alpha=0.05, se.method="supplied.var", J=3) {
 
     structure(list(estimate=Lhat, lff=f, maxbias=maxbias, sd=sd, 
                    lower_estimate = lower_estimate,
-                   upper_estimate = upper_estimate
+                   upper_estimate = upper_estimate,
                    lower=lower, upper=upper, hl=hl, delta=sqrt(4*q), omega=2*b,
                    eff.obs=eff.obs),
               class="NPRResults")
