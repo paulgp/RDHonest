@@ -100,6 +100,7 @@ NPRHonest.fit <- function(d, M, kern="triangular", h, opt.criterion,
     naive <- stats::pnorm(z-bias/sd)-stats::pnorm(-z- bias/sd)
 
     structure(list(estimate=r1$estimate, lff=NA, maxbias=bias, sd=sd,
+                   lower_estimate = r1$lower_estimate, upper_estimate = r1$upper_estimate, 
                    lower=lower, upper=upper, hl=hl, eff.obs=r1$eff.obs,
                    hp=unname(h["p"]), hm=unname(h["m"]), naive=naive,
                    fs=r1$fs),
