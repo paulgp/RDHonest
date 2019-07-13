@@ -187,6 +187,8 @@ NPRreg.fit <- function(d, h, kern="triangular", order=1, se.method="nn",
                              mean(rm$sigma2)/h["m"]) / (N*f0)
         }
         ret$estimate <- rp$theta-rm$theta
+        ret$lower_estimate <- rm$theta
+        ret$upper_estimate <- rp$theta
         ret$se <- sqrt(c(rm$var+rp$var, plugin=plugin))
     } else if (inherits(d, "FRDData")) {
         ret$fs <- rp$theta[2]-rm$theta[2]
