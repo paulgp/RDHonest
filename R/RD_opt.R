@@ -83,7 +83,9 @@ RDEstimator <- function(d, f, alpha=0.05, se.method="supplied.var", J=3) {
     Wp <- Wp[Wp!=0]
     Wm <- Wm[Wm!=0]
     Lhat <- sum(Wp * d$Yp) - sum(Wm * d$Ym)
-
+    lower_estimate <- sum(Wp * d$Yp)
+    upper_estimate <- sum(Wm * d$Ym)
+    
     q <- Q(d, f)
     b <- f$m(0)+f$p(0)
 
@@ -107,8 +109,10 @@ RDEstimator <- function(d, f, alpha=0.05, se.method="supplied.var", J=3) {
     ## Effective number of observations
     eff.obs <- 1/sum(Wp^2) + 1/sum(Wm^2)
 
-    structure(list(estimate=Lhat, lff=f, maxbias=maxbias, sd=sd, lower=lower,
-                   upper=upper, hl=hl, delta=sqrt(4*q), omega=2*b,
+    structure(list(estimate=Lhat, lff=f, maxbias=maxbias, sd=sd, 
+                   lower_estimate = lower_estimate,
+                   upper_estimate = upper_estimate
+                   lower=lower, upper=upper, hl=hl, delta=sqrt(4*q), omega=2*b,
                    eff.obs=eff.obs),
               class="NPRResults")
 }
